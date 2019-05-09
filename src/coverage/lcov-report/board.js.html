@@ -1,0 +1,1301 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for board.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> board.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>200/200</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>192/192</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>19/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>175/175</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3704x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3702x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3701x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">234806x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3700x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3700x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3700x</span>
+<span class="cline-any cline-yes">3671x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3700x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3700x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14739x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6075784x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2612980x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2612978x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2612977x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">239612x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">239611x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">239610x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">239610x</span>
+<span class="cline-any cline-yes">52798x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">186812x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3678x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3677x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3676x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">947x</span>
+<span class="cline-any cline-yes">1183x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">282x</span>
+<span class="cline-any cline-yes">292x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">644x</span>
+<span class="cline-any cline-yes">980x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">465x</span>
+<span class="cline-any cline-yes">664x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">396x</span>
+<span class="cline-any cline-yes">428x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">820x</span>
+<span class="cline-any cline-yes">959x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">447x</span>
+<span class="cline-any cline-yes">464x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-yes">160x</span>
+<span class="cline-any cline-yes">162x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3672x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8813x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">8812x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8811x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8811x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2893x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2892x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2892x</span>
+<span class="cline-any cline-yes">185088x</span>
+<span class="cline-any cline-yes">18880x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2892x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">897x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3667x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3690x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3688x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3688x</span>
+<span class="cline-any cline-yes">29492x</span>
+<span class="cline-any cline-yes">235888x</span>
+<span class="cline-any cline-yes">20201x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3688x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3690x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2881720x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2857493x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3107364x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * This is the Board class that stores the state of the othello game board.
+ */
+class Board {
+    /**
+     * Creates an instance of Board.
+     * @param {number} size The size of the board (must be even and greater than or equal to 4).
+     * @param {string[]} [state] The initial state to set the board.
+     * @throws {InvalidBoardSize} Thrown if the specified board size is not even or less than 4.
+     * @throws {InvalidStateSize} Thrown if the state size is not the square of the board size.
+     * @throws {InvalidCellValue} Thrown is the state contains a cell where the value is neither of {'B', 'W', 'N'}
+     */
+    constructor(size, state) {
+        if (size % 2 !== 0 || size &lt; 4)
+            throw "InvalidBoardSize";
+        if (state !== undefined &amp;&amp; size * size !== state.length)
+            throw "InvalidStateSize";
+        if (state !== undefined)
+            for (let i = 0; i &lt; state.length; i++)
+                if (!this.validValue(state[i]))
+                    throw "InvalidCellValue";
+&nbsp;
+        /**
+         * This variable stores the size of the board (the board is a square grid of size-by-size).
+         */
+        this.size = size;
+         /**
+         * This variable stores the state of the individual cells of the board.
+         * @property {string[]} state [state]{@link Board#state}
+         * @property {number} size [size]{@link Board#size}
+         */
+        this.state = [];
+        
+        if (state !== undefined)
+            this.state = JSON.parse(JSON.stringify(state));
+&nbsp;
+        if (state === undefined) {
+            this.state = [...Array(64)].fill('N');
+&nbsp;
+            let tl = size / 2 - 1;
+            let br = size / 2;
+&nbsp;
+            this.state[this.index(tl, tl)] = 'W';
+            this.state[this.index(br, br)] = 'W';
+            this.state[this.index(tl, br)] = 'B';
+            this.state[this.index(br, tl)] = 'B';
+        }
+&nbsp;
+        this.listeners = [];
+    }
+&nbsp;
+    /**
+     * Returns the size of the board.
+     */
+    getBoardSize() {
+        return this.size;
+    }
+&nbsp;
+    /**
+     * Returns true if the (x, y) cell is within the bounds of the board, otherwise false.
+     * @param {number} x The x location of the cell
+     * @param {number} y The y location of the cell
+     * @returns {boolean} &lt;code&gt;true&lt;/code&gt; if the (x, y) cell is within the bounds of the board, otherwise &lt;code&gt;false&lt;/code&gt;.
+     */
+    isCellInBoard(x, y) {
+        return x &gt;= 0 &amp;&amp; y &gt;= 0 &amp;&amp; x &lt; this.size &amp;&amp; y &lt; this.size;
+    }
+&nbsp;
+    /**
+     * Checks if a cell is set to a particular value.
+     * @param {number} x The x location of the cell
+     * @param {number} y The y location of the cell
+     * @param {string} v The value to test against
+     * @throws {InvalidCellLocation} Thrown if the (x, y) cell doesn't exist
+     * @throws {InvalidCellValue} Thrown if the specified value is neither of {'B', 'W', 'N'}
+     * @returns {boolean} &lt;code&gt;true&lt;/code&gt; if the (x, y) cell is set to the specified value, otherwise &lt;code&gt;false&lt;/code&gt;.
+     */
+    isCellValue(x, y, v) {
+        if (!this.isCellInBoard(x, y))
+            throw "InvalidCellLocation";
+        if (!this.validValue(v))
+            throw "InvalidCellValue";
+&nbsp;
+        return this.state[this.index(x, y)] === v;
+    }
+&nbsp;
+    /**
+     * Checks if the cell is a valid move for a specified player.
+     * @param {number} x The x location of the cell
+     * @param {number} y The y location of the cell
+     * @param {string} player The player to test for a valid move
+     * @throws {InvalidCellLocation} Thrown if the (x, y) cell doesn't exist
+     * @throws {InvalidPlayer} Thrown if the specfied player is neither of {'B', 'W'}
+     * @returns {number} A positive value representing possible increase in score and a valid move, otherwise 0 representing invalid move.
+     */
+    valid(x, y, player) {
+        if (!this.isCellInBoard(x, y))
+            throw "InvalidCellLocation";
+        if (!this.validPlayer(player))
+            throw "InvalidPlayer";
+&nbsp;
+        // The index of the cell.
+        let idx = this.index(x, y);
+&nbsp;
+        // If the cell is not empty, it is an invalid move.
+        if (this.state[idx] !== 'N')
+            return 0;
+&nbsp;
+        // The opponent of the player.
+        let opponent = player === 'B' ? 'W' : 'B';
+&nbsp;
+        // The number of opponent cells in each direction.
+        let left = 0;
+        let right = 0;
+        let top = 0;
+        let bottom = 0;
+        let topleft = 0;
+        let topright = 0;
+        let bottomleft = 0;
+        let bottomright = 0;
+&nbsp;
+        // The x and y coordinates to keep track of the cell that is being inspected for each direction.
+        let xil = x - 1;
+        let xir = x + 1;
+        let yit = y - 1;
+        let yib = y + 1;
+        let xitl = x - 1;
+        let yitl = y - 1;
+        let xitr = x + 1;
+        let yitr = y - 1;
+        let xibl = x - 1;
+        let yibl = y + 1;
+        let xibr = x + 1;
+        let yibr = y + 1;
+&nbsp;
+        // Count the amount of opponent cells in each direction.
+        for (; this.isCellInBoard(xil, y) &amp;&amp; this.isCellValue(xil, y, opponent); xil--) left++;
+        for (; this.isCellInBoard(x, yit) &amp;&amp; this.isCellValue(x, yit, opponent); yit--) top++;
+        for (; this.isCellInBoard(xir, y) &amp;&amp; this.isCellValue(xir, y, opponent); xir++) right++;
+        for (; this.isCellInBoard(x, yib) &amp;&amp; this.isCellValue(x, yib, opponent); yib++) bottom++;
+        for (; this.isCellInBoard(xitr, yitr) &amp;&amp; this.isCellValue(xitr, yitr, opponent); xitr++ , yitr--) topright++;
+        for (; this.isCellInBoard(xitl, yitl) &amp;&amp; this.isCellValue(xitl, yitl, opponent); xitl-- , yitl--) topleft++;
+        for (; this.isCellInBoard(xibr, yibr) &amp;&amp; this.isCellValue(xibr, yibr, opponent); xibr++ , yibr++) bottomright++;
+        for (; this.isCellInBoard(xibl, yibl) &amp;&amp; this.isCellValue(xibl, yibl, opponent); xibl-- , yibl++) bottomleft++;
+&nbsp;
+        let total = 0;
+&nbsp;
+        // Check if there is at least 1 opponent cell in the respective directions and ends with a player cell.
+        if (this.isCellInBoard(xil, y) &amp;&amp; this.isCellValue(xil, y, player) &amp;&amp; left &gt; 0) total += left;
+        if (this.isCellInBoard(xir, y) &amp;&amp; this.isCellValue(xir, y, player) &amp;&amp; right &gt; 0) total += right;
+        if (this.isCellInBoard(x, yit) &amp;&amp; this.isCellValue(x, yit, player) &amp;&amp; top &gt; 0) total += top;
+        if (this.isCellInBoard(x, yib) &amp;&amp; this.isCellValue(x, yib, player) &amp;&amp; bottom &gt; 0) total += bottom;
+        if (this.isCellInBoard(xitr, yitr) &amp;&amp; this.isCellValue(xitr, yitr, player) &amp;&amp; topright &gt; 0) total += topright;
+        if (this.isCellInBoard(xitl, yitl) &amp;&amp; this.isCellValue(xitl, yitl, player) &amp;&amp; topleft &gt; 0) total += topleft;
+        if (this.isCellInBoard(xibl, yibl) &amp;&amp; this.isCellValue(xibl, yibl, player) &amp;&amp; bottomleft &gt; 0) total += bottomleft;
+        if (this.isCellInBoard(xibr, yibr) &amp;&amp; this.isCellValue(xibr, yibr, player) &amp;&amp; bottomright &gt; 0) total += bottomright;
+&nbsp;
+        // Return 0 if line is not created.
+        return total;
+    }
+&nbsp;
+    /**
+     * Performs a move for a specified player
+     * @param {number} x The x location of a cell
+     * @param {number} y The y location of a cell
+     * @param {string} player The player making the move.
+     * @throws {InvalidCellLocation} Thrown if the specifed (x, y) cell doesn't exist.
+     * @throws {InvalidPlayer} Thrown if the specified player if neither of {'B', 'W'}.
+     * @throws {InvalidMove} Thrown if the move is invalid.
+     */
+    move(x, y, player) {
+        if (!this.isCellInBoard(x, y))
+            throw "InvalidCellLocation";
+        if (!this.validPlayer(player))
+            throw "InvalidPlayer";
+        if (!this.valid(x, y, player))
+            throw "InvalidMove";
+        
+        // The style of cell to set.
+        let opponent = player === 'B' ? 'W' : 'B';
+&nbsp;
+        this.setCell(x, y, player);
+&nbsp;
+        // The number of opponent cells in each direction.
+        let left = 0;
+        let right = 0;
+        let top = 0;
+        let bottom = 0;
+        let topleft = 0;
+        let topright = 0;
+        let bottomleft = 0;
+        let bottomright = 0;
+&nbsp;
+        // The x and y coordinates to keep track of the cell that is being inspected for each direction.
+        let xil = x - 1;
+        let xir = x + 1;
+        let yit = y - 1;
+        let yib = y + 1;
+        let xitl = x - 1;
+        let yitl = y - 1;
+        let xitr = x + 1;
+        let yitr = y - 1;
+        let xibl = x - 1;
+        let yibl = y + 1;
+        let xibr = x + 1;
+        let yibr = y + 1;
+&nbsp;
+        // Count the amount of opponent cells in each direction.
+        for (; this.isCellInBoard(xil, y) &amp;&amp; this.isCellValue(xil, y, opponent); xil--) left++;
+        for (; this.isCellInBoard(x, yit) &amp;&amp; this.isCellValue(x, yit, opponent); yit--) top++;
+        for (; this.isCellInBoard(xir, y) &amp;&amp; this.isCellValue(xir, y, opponent); xir++) right++;
+        for (; this.isCellInBoard(x, yib) &amp;&amp; this.isCellValue(x, yib, opponent); yib++) bottom++;
+        for (; this.isCellInBoard(xitr, yitr) &amp;&amp; this.isCellValue(xitr, yitr, opponent); xitr++ , yitr--) topright++;
+        for (; this.isCellInBoard(xitl, yitl) &amp;&amp; this.isCellValue(xitl, yitl, opponent); xitl-- , yitl--) topleft++;
+        for (; this.isCellInBoard(xibr, yibr) &amp;&amp; this.isCellValue(xibr, yibr, opponent); xibr++ , yibr++) bottomright++;
+        for (; this.isCellInBoard(xibl, yibl) &amp;&amp; this.isCellValue(xibl, yibl, opponent); xibl-- , yibl++) bottomleft++;
+&nbsp;
+        // Set the chips if the direction is valid to form a line.
+        if (this.isCellInBoard(xil, y) &amp;&amp; this.isCellValue(xil, y, player) &amp;&amp; left &gt; 0) {
+            for (let xi = x - 1; this.isCellInBoard(xi, y) &amp;&amp; this.isCellValue(xi, y, opponent); xi--) {
+                this.setCell(xi, y, player);
+            }
+        }
+&nbsp;
+        if (this.isCellInBoard(xir, y) &amp;&amp; this.isCellValue(xir, y, player) &amp;&amp; right &gt; 0) {
+            for (let xi = x + 1; this.isCellInBoard(xi, y) &amp;&amp; this.isCellValue(xi, y, opponent); xi++) {
+                this.setCell(xi, y, player);
+            }
+        }
+&nbsp;
+        if (this.isCellInBoard(x, yit) &amp;&amp; this.isCellValue(x, yit, player) &amp;&amp; top &gt; 0) {
+            for (let yi = y - 1; this.isCellInBoard(x, yi) &amp;&amp; this.isCellValue(x, yi, opponent); yi--) {
+                this.setCell(x, yi, player);
+            }
+        }
+&nbsp;
+        if (this.isCellInBoard(x, yib) &amp;&amp; this.isCellValue(x, yib, player) &amp;&amp; bottom &gt; 0) {
+            for (let yi = y + 1; this.isCellInBoard(x, yi) &amp;&amp; this.isCellValue(x, yi, opponent); yi++) {
+                this.setCell(x, yi, player);
+            }
+        }
+&nbsp;
+        if (this.isCellInBoard(xitr, yitr) &amp;&amp; this.isCellValue(xitr, yitr, player) &amp;&amp; topright &gt; 0) {
+            for (let xi = x + 1, yi = y - 1; this.isCellInBoard(xi, yi) &amp;&amp; this.isCellValue(xi, yi, opponent); xi++ , yi--) {
+                this.setCell(xi, yi, player);
+            }
+        }
+&nbsp;
+        if (this.isCellInBoard(xitl, yitl) &amp;&amp; this.isCellValue(xitl, yitl, player) &amp;&amp; topleft &gt; 0) {
+            for (let xi = x - 1, yi = y - 1; this.isCellInBoard(xi, yi) &amp;&amp; this.isCellValue(xi, yi, opponent); xi-- , yi--) {
+                this.setCell(xi, yi, player);
+            }
+        }
+&nbsp;
+        if (this.isCellInBoard(xibl, yibl) &amp;&amp; this.isCellValue(xibl, yibl, player) &amp;&amp; bottomleft &gt; 0) {
+            for (let xi = x - 1, yi = y + 1; this.isCellInBoard(xi, yi) &amp;&amp; this.isCellValue(xi, yi, opponent); xi-- , yi++) {
+                this.setCell(xi, yi, player);
+            }
+        }
+&nbsp;
+        if (this.isCellInBoard(xibr, yibr) &amp;&amp; this.isCellValue(xibr, yibr, player) &amp;&amp; bottomright &gt; 0) {
+            for (let xi = x + 1, yi = y + 1; this.isCellInBoard(xi, yi) &amp;&amp; this.isCellValue(xi, yi, opponent); xi++ , yi++) {
+                this.setCell(xi, yi, player);
+            }
+        }
+&nbsp;
+        // Notify listeners of model update.
+        this.notify();
+    }
+&nbsp;
+    /**
+     * Sets the value of a cell.
+     * @param {number} x The x location of the cell
+     * @param {number} y The y location of the cell
+     * @param {string} v The new value of the cell
+     * @param {boolean} [notify] Set to true if you want to notify the listeners, otherwise false (also default)
+     * @throws {InvalidCellLocation} Thrown if the (x, y) cell doesn't exist.
+     * @throws {InvalidCellValue} Thrown if the specified value is neither of {'B', 'W', 'N'}
+     */
+    setCell(x, y, v, notify) {
+        if (!this.isCellInBoard(x, y))
+            throw "InvalidCellLocation";
+        if (!this.validValue(v))
+            throw "InvalidCellValue";
+        
+        this.state[this.index(x, y)] = v;
+&nbsp;
+        if (notify === true)
+            this.notify()
+    }
+&nbsp;
+    /**
+     * Gets the value of a cell
+     * @param {number} x The x location of the cell
+     * @param {number} y The y location of the cell
+     * @throws {InvalidCellLocation} Thrown if the (x, y) cell doesn't exist.
+     * @return {string} The value which is either {'B', 'W', 'N'} of the specified cell.
+     */
+    getCell(x, y) {
+        if (!this.isCellInBoard(x, y))
+            throw "InvalidCellLocation";
+        
+        return this.state[this.index(x, y)];
+    }
+&nbsp;
+    /**
+     * Gets the count of the player's chip in the board.
+     * @param {string} player The player to get the count for.
+     * @throws {InvalidPlayer} Thrown if the specified player is neither of {'B', 'W'}
+     * @returns {number} The amount of chips the player has on the game board.
+     */
+    getCount(player) {
+        if (!this.validPlayer(player))
+            throw "InvalidPlayer";
+        
+        let sum = 0;
+&nbsp;
+        for (let i = 0; i &lt; this.state.length; i++)
+            if (this.state[i] === player)
+                sum++
+        
+        return sum;
+    }
+&nbsp;
+    /**
+     * Sets the state of the board.
+     * @param {string[]} state The state to set.
+     * @throws {InvalidStateSize} Thrown if the specified state is not the correct size.
+     * @throws {InvalidCellValue} Thrown if the specified value is neither of {'B', 'W', 'N'}
+     */
+    setState(state) {
+        if (this.size * this.size !== state.length)
+            throw "InvalidStateSize";
+        
+        for (let i = 0; i &lt; state.length; i++)
+            if (!this.validValue(state[i]))
+                throw "InvalidCellValue";
+        
+        this.state = JSON.parse(JSON.stringify(state));
+&nbsp;
+        // Notify of a state update.
+        this.notify();
+    }
+&nbsp;
+    /**
+     * Gets the state of the board.
+     * @returns {string[]} An array of {'B', 'W', 'N'} representing the individual cell values.
+     */
+    getState() {
+        return JSON.parse(JSON.stringify(this.state));
+    }
+&nbsp;
+    /**
+     * Sets the state of the board.
+     * @param {string} player One of {'B', 'W'} as the player.
+     * @throws {InvalidCellValue} Thrown if the specified value is neither of {'B', 'W', 'N'}
+     * @returns {number[]} An array of the indices of the cells that are valid.
+     */
+    findValidMoves(player) {
+        if (!this.validPlayer(player))
+            throw "InvalidPlayer";
+        
+        let indicies = [];
+&nbsp;
+        for (let y = 0; y &lt; this.size; y++)
+            for (let x = 0; x &lt; this.size; x++)
+                if (this.valid(x, y, player))
+                    indicies.push(this.index(x, y));
+&nbsp;
+        return indicies;
+    }
+&nbsp;
+    /**
+     * Adds a listener (a fucntion) to call when the state of the board is updated.
+     * @param {function} listener A callback function with no parameters.
+     */
+    listen(listener) {
+        this.listeners.push(listener);
+    }
+&nbsp;
+    /**
+     * Calls the functions that are listening for the change in state.
+     */
+    notify() {
+        for (let listener of this.listeners)
+            listener();
+    }
+&nbsp;
+    /**
+     * Removes a listener from the list to notify when there is a state change.
+     * @param {function} listener The listener to remove
+     */
+    ignore(listener) {
+        this.listeners = this.listeners.filter(e =&gt; e !== listener);
+    }
+&nbsp;
+    // * Helper and private functions for readability of the code above (not part of the interface).
+    index(x, y) {
+        return this.size * y + x;
+    }
+&nbsp;
+    validValue(v) {
+        return this.validPlayer(v) || v === 'N';
+    }
+&nbsp;
+    validPlayer(v) {
+        return v === 'B' || v === 'W';
+    }
+}
+&nbsp;
+/* istanbul ignore next */
+if (typeof module !== 'undefined' &amp;&amp; module.exports)
+    module.exports = Board;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Dec 05 2018 21:57:27 GMT-0500 (Eastern Standard Time)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>

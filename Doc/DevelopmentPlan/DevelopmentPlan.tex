@@ -1,0 +1,145 @@
+\documentclass{article}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+
+\title{SE 3XA3: Development Plan \\ Group 2}
+
+\author{Team \#2, JSM Corporation
+		\\ Mohammed Mirajkar - mirajkam
+		\\ Jinesh Patel - patelj60
+		\\ Sankar Renganathan - renganas
+}
+
+\date{}
+
+%\input{../Comments}
+
+\begin{document}
+
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+\midrule
+Sep 26 2018 & Mohammed Mirajkar & Proof of Concept\\
+Sep 26 2018 & Jinesh Patel & Workflow and Communication plans\\
+Sep 26 2018 & Sankar Renganathan & Gantt Chart\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\maketitle
+
+
+\section*{Team Meeting Plan}
+\begin{itemize}
+  \item Thode Library and ITB
+  \item Twice or 3 times a week between 5-7 pm + lab hours
+  \item Roles and time are flexible and can be changed
+  \item Logs will be created for every meeting
+  \item All team members must attend
+
+\end{itemize}
+
+\section*{Team Communication Plan}
+ \begin{itemize}
+      	\item Facebook: Used for Daily Conversation about the project and issues)
+	\item Discord: Used for important ambiguous topics that require oral communication to gain a proper understanding
+	\item Email: Used as a back up means of communication if any of the above means of communications fail
+\end{itemize}
+
+\section*{Team Member Roles}
+  \begin{itemize}
+      \item Mohammed Mirajkar - Developer , Scribe, Communications Organizer
+      \item Jinesh Patel - Developer, Head Programmer, Technology expert, Git manager
+      \item Sankar Renganathan - Developer, Creative Head, LateX manager
+  \end{itemize}
+
+\section*{Git Workflow Plan}
+\begin{itemize}
+	\item Commit to branch
+	\item Branch to modify code
+	\item Git pull every time an update is made
+	\item Merge onto master when completing the branch
+	\item Use branches for bug fixes
+	\item Tags represent different revisions of a file
+\end{itemize}
+
+
+\section*{Proof of Concept Demonstration Plan}
+
+\subsection*{Risks}
+
+A significant risk with our program is that the AI may be very slow to make a move. The algorithm for making a competent AI is very complicated and it is very easy to make a mistake. In order to overcome the problem we can model our algorithm based on an already existing algorithm for othello. {\color{blue}If we do use an existing AI algorithm, we will reference it on our code}
+
+\subsection*{Implementation}
+
+{\color {blue} We will show a functional implementation of othello without any features, excluding the reset button. We will do a quick run through of the game showcasing that all the rules of othello are obeyed by our program. We will showcase that invalid moves do not work and  that every valid move is showcased. The proof of concept AI will be a simple random AI in order to  prevent complications and strictly show the progress of the program}
+
+\subsection*{Testing}
+
+Testing whether our AI is competent is a hard task. There is no clear method to test competence and the whole testing process shall be abstract. However, testing whether the game of othello is implemented properly will be much easier. We will be using JavaScript unit testing frameworks such as {\color{blue}Jest} in order to test whether the game of othello is implemented properly.
+
+\subsection*{Required Library}
+
+The Required library is simple to install. The open sources project of othello has already been installed in our respective git repositories.
+
+\subsection*{Portability}
+
+Portability is not a concern because the  project will be a browser based application. It will be able to run on platform via any web browser.
+
+
+\section*{Technology}
+
+Programming Language: HTML/CSS/JavaScript\\
+IDE: Visual Studios\\
+Testing framework: Jasmine (Javascript Testing Framework)
+
+\section*{Coding Style}
+
+\subsection*{Naming}
+\begin{itemize}
+\item Global variables should all be upper case
+\item Constants should all be uppercase
+\item Camel case format is used for naming variables, functions and objects
+\item Names for functions, variables and objects must start with a letter
+\end{itemize}
+
+\subsection*{Spaces/Indents}
+\begin{itemize}
+\item Line length should  be $<= $ 50 characters
+\item Code inside a compound statement or function must be indented by 4 spaces
+\item Code blocks should consist of $<=$10 lines of code
+\item Every Code block must be separated by a space
+\item Spaces must be put around basic operators (-, +, /, *)
+\end{itemize}
+
+\subsection*{Statements}
+\begin{itemize}
+\item All statements should end with a semicolon excluding complex statements
+\item The beginning curly brace of the compound statement must start at the end of the first line of the compound statement
+\item The ending curly brace must be on a new line without any leading spaces
+\end{itemize}
+
+\subsection*{Object}
+\begin{itemize}
+\item The opening curly brace must be on the same line as the object name declaration
+\item The ending curly brace must be on a new line without any leading spaces
+\end{itemize}
+
+
+\section*{Project Schedule}
+
+Project Schedule is in the git repository. \\
+https://gitlab.cas.mcmaster.ca/patelj60/3XA3-G02-Othello/tree/master/ProjectSchedule 
+
+\section*{Project Review}
+
+N/A
+
+\end{document}

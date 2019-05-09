@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Othello Game</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/history.js"></script>
+    <script src="scripts/board.js"></script>
+    <script src="scripts/ai.js"></script>
+    <script src="scripts/game.js"></script>
+    <script src="scripts/ui.js"></script>
+    <link rel="icon" href="img/favicon.ico">
+</head>
+
+<body>
+    <div id="controls">
+        <div onclick="UI.reset()">Reset</div>
+        <div onclick="UI.undo()">Undo</div>
+        <div onclick="UI.save()">Save</div>
+        <div onclick="UI.load()">Load</div>
+    </div>
+
+    <div id="main">
+        <h1>Othello Game</h1>
+        <!-- start button-->
+        <div class="btn-group">
+            <button onclick="Game.ai.setDifficulty(0); UI.start()">Easy</button>
+            <button onclick="Game.ai.setDifficulty(1); UI.start()">Medium</button>
+            <button onclick="Game.ai.setDifficulty(2); UI.start()">Hard</button>
+        </div>
+        <p><br /><br /><br /></p>
+        <h3>How To Play:</h3>
+        <p>-Can only place pieces on a tile where there is adjacent piece belonging to the opponent</p>
+        <p>-Must enclose opponent horizontally, vertically and/or diagonally</p>
+        <p>-Person with most pieces at end of the game is the winner</p>
+        <p>-If using safari, for the save and load feature, make sure Local File Restrictions are disabled under the Develop menu and refresh the page.</p>
+    </div> 
+
+    <div id="game">
+        <div id="panel">
+            <div id="board">
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+            </div>
+            <div id="scoreboard">
+                <h2 align="center">Scoreboard</h3>
+                    <div class="whiteColumn">
+                        <h3 id="white">White: 2</h3>
+                    </div>
+                    <div class="blackColumn">
+                        <h3 id="black">Black: 2</h3>
+                    </div>
+            </div>
+        </div>
+        <div id="victoryBoard">
+            <h1>You Lose!</h1>
+            <div class="slidecontainer">
+                <input onchange="UI.view(this.value)" oninput="UI.view(this.value)" type="range" min="1" max="100"
+                    value="50" class="slider" id="myRange">
+            </div>
+            <div id="playback">
+                <div onclick="UI.first()" style="background-image: url('img/if_control-first_1288802.svg')"></div>
+                <div onclick="UI.prev()" style="background-image: url('img/if_control-backward_1288806.svg')"></div>
+                <div onclick="UI.play()" style="background-image: url('img/if_control-play_1288804.svg')"></div>
+                <div onclick="UI.next()" style="background-image: url('img/if_control-forward_1288811.svg')"></div>
+                <div onclick="UI.last()" style="background-image: url('img/if_control-last_1288803.svg')"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

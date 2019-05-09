@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: game.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: game.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * The game class controls the functionality of the othello game
+ */
+
+class Game{
+
+    static  board = new Board(8,undefined);
+    static boardHistory = new History();
+
+    /** Keep track of whose turn it is
+     * @member{Board}
+    */
+    static turn = "player";
+
+    /**Keep track of who is winning (1 for human, 0 for AI, -1 for tie) 
+     * @var{number}
+    */
+    static winner = -1;
+
+
+    /** The size of the board.
+     * @var{number}
+    */
+    static BOARD_SIZE = board.getBoardSize();
+
+    /** animation timing for main screen
+     * @var{number}
+    */
+    static MAIN_SCREEN_TIME = 500;
+
+    /** animation timing for wrong move
+     * @var{number}
+    */
+    static INVALID_MOVE_TIME = 1000;
+
+
+    /**
+     * sets up the board to the default state.
+     */
+    static setup() {
+        var c = document.getElementById("board").children;
+
+        for (let y = 0; y &lt; BOARD_SIZE; y++) {
+            for (let x = 0; x &lt; BOARD_SIZE; x++) {
+                let idx = index(x, y);
+
+                // Color the board in a checkerboard style
+                c[idx].style.backgroundColor = (y &amp; 1 &amp;&amp; x &amp; 1) || !((y &amp; 1) || x &amp; 1) ? "#555555" : "#777777";
+                // Provide an id to the cell so that when it's clicked it can be identified.
+                c[idx].id = '' + idx;
+
+                // Add the initial two white and black chips and all others as empty.
+                if (idx == 27 || idx == 36) {
+                    c[idx].children[0].className = "white";
+                    board[idx] = 'w';
+                } else if (idx == 28 || idx == 35) {
+                    c[idx].children[0].className = "black";
+                    board[idx] = 'b';
+                } else {
+                    c[idx].children[0].className = "empty";
+                    board[idx] = '';
+                }
+
+                // Set the click function for the cell.
+                c[idx].onclick = handleClick;
+            }
+            score();
+        }
+        // Find the initial valid moves.
+        let indicies = findValidMoves('w');
+
+        // Update the cells to display the valid moves.
+        for (let idx of indicies)
+            c[idx].children[0].className = "option";
+    }
+
+    /**
+     * Handles the click event of any cell
+     * @param {Object} event the click event that the user causes to occur
+     */
+    static handleClick(event) {
+        var c = document.getElementById("board").children;
+        let idx = parseInt(event.target.id);
+        let y = Math.floor(idx / BOARD_SIZE);
+        let x = idx % BOARD_SIZE;
+
+        if (c[idx].children[0].className == "option" &amp;&amp; turn == "player") {
+            // Find valid moves of player to disable after the move.
+            let validPlayer = findValidMoves('w');
+            validPlayer.splice(validPlayer.indexOf(idx), 1);
+
+            // adding actions to personHistory and increasing the index
+            boardHistory.push(['w', JSON.parse(JSON.stringify(board))]);
+            move('w', x, y);
+            score();
+
+            turn = "ai";
+            // Find the valid moves for AI.
+            let validAI = findValidMoves('b');
+
+            // Update the cells to display the valid moves for AI.
+            for (let idx of validAI) {
+                c[idx].children[0].className = "option";
+            }
+            for (let idx of validPlayer)
+                c[idx].children[0].className = "empty";
+
+            // Perform the AI Move after a timeout
+            // ! Specifcally no var, and let so that t is global
+            t = setTimeout(() => {
+                boardHistory.push(['b', JSON.parse(JSON.stringify(board))]);
+                let choice = moveAI();
+                validAI.splice(validAI.indexOf(choice), 1);
+                validPlayer = findValidMoves('w');
+
+                // Update the cells to display the valid moves for player.
+                for (let idx of validAI) {
+                    c[idx].children[0].className = "empty";
+                }
+                for (let idx of validPlayer) {
+                    c[idx].children[0].className = "option";
+                }
+
+                score();
+                turn = "player";
+
+                clearTimeout(t);
+            }, INVALID_MOVE_TIME);
+        } else if (turn == "player") {
+            displayInvalidMove(idx);
+        }
+        gameEnd();
+    }
+
+
+
+    /**
+     * Initiates the game and handles the start button click event
+     */
+    static start() {
+        // Animate the main screen away.
+        document.getElementById("main").style.opacity = "0";
+        let t = setTimeout(() => {
+            document.getElementById("main").style.display = "none";
+            clearTimeout(t);
+        }, MAIN_SCREEN_TIME);
+
+        // Setup the game board.
+        setup();
+    }
+
+    /**
+     * checks to see if the game has ended and which player has won
+     */
+    static gameEnd() {
+        if (findValidMoves('b').length + findValidMoves('w').length === 0) {
+            score();
+            let w = parseInt(document.getElementById("white").innerHTML);
+            let b = parseInt(document.getElementById("black").innerHTML);
+
+            if (b > w)
+                window.alert('Game Over. Black wins. Please press Reset to Play Again');
+            else if (w > b)
+                window.alert('Game Over. White wins. Please press Reset to Play Again');
+            else
+                window.alert('Game Over. Game is tied. Please press Reset to Play Again');
+        }
+    }
+
+    /**
+     * updates each players score based on the current board state
+     */
+    static score() {
+        var whiteScore = 0;
+        var blackScore = 0;
+        for (let y = 0; y &lt; BOARD_SIZE; y++) {
+            for (let x = 0; x &lt; BOARD_SIZE; x++) {
+                if (isCellValue(x, y, 'w'))
+                    whiteScore++;
+                else if (isCellValue(x, y, 'b'))
+                    blackScore++;
+            }
+        }
+        
+        var white = "White: " + whiteScore.toString();
+        document.getElementById("white").innerHTML = white;
+        var black = "Black: " + blackScore.toString();
+        document.getElementById("black").innerHTML = black;
+    }
+
+    /**
+     * Resets the game to its default state
+     * Handles the click event for the restart button
+     */
+    static resetGame() {
+        boardHistory = [];
+        clearTimeout(t);
+        turn = "player";
+        setup()
+    }
+
+
+    /**
+     * Changes the game to be in its previous board state.
+     * Handles the click event for the undo button
+     */
+    static undo() {
+        if (boardHistory.length == 0)
+            return;
+
+        clearTimeout(t);
+        var h = boardHistory.pop()
+        if (h[0] == 'w') {
+            board = h[1];
+        } else {
+            var h2 = boardHistory.pop();
+            board = h2[1];
+        }
+
+        let validPlayer = findValidMoves('w');
+
+        for (let y = 0; y &lt; BOARD_SIZE; y++) {
+            for (let x = 0; x &lt; BOARD_SIZE; x++) {
+                let idx = index(x, y);
+                let i = document.getElementById('' + idx).children[0];
+
+                if (validPlayer.includes(idx))
+                    i.className = "option";
+                else if (board[idx] == 'w')
+                    i.className = "white";
+                else if (board[idx] == 'b')
+                    i.className = "black"
+                else
+                    i.className = 'empty';
+            }
+        }
+        score();
+        turn = "player";
+    }
+
+    /** chooses a valid move for the AI
+     * 
+    */
+    static moveAI() {
+        // Find the valid moves for AI.
+        let validAI = findValidMoves('b');
+
+        if (validAI.length == 0)
+            return;
+        
+        let scores = [];
+
+        for (let i = 0; i &lt; validAI.length; i++)
+            scores.push(valid('b', validAI[i] % BOARD_SIZE, Math.floor(validAI[i] / BOARD_SIZE)));
+
+        let idx = validAI[Math.floor((Math.random() * validAI.length))];
+        idx = AI.pickMoveAverage(validAI, scores, BOARD_SIZE);
+        let y = Math.floor(idx / BOARD_SIZE);
+        let x = idx % BOARD_SIZE;
+
+        // Adding action to history bar
+        move('b', x, y);
+        score();
+        gameEnd();
+        return idx;
+        }
+}
+module.exports = Game;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AI.html">AI</a></li><li><a href="Board.html">Board</a></li><li><a href="Game.html">Game</a></li><li><a href="History.html">History</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Nov 10 2018 15:14:29 GMT-0500 (Eastern Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

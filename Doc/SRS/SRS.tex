@@ -1,0 +1,434 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+\usepackage{float}
+\restylefloat{table}
+
+\renewcommand{\bf}{\textbf}
+
+\title{SE 3XA3: Software Requirements Specification\\Othello}
+
+\author{Team \#2, JMS Corporation
+		\\ Mohammed Mirajkar, mirajkam
+		\\ Jinesh Patel, patelj60
+		\\ Sankar Renganathan, renganas
+}
+
+\date{\today}
+
+%\input{../Comments}
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+\listoftables
+\listoffigures
+
+\begin{table}[bp]
+	\caption{\bf Revision History}
+	\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+		\toprule {\bf Date} & {\bf Version} & {\bf Notes}                                                   \\
+		\midrule
+		October 3           & 0.1           & Updated Project Drivers and Issues and created requirements   \\
+		October 5           & 0.2           & Added in the Functional and Non function sections of the SRS. \\
+		November 28      & 1.0           & Added additional features implemented \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\newpage
+
+\pagenumbering{arabic}
+
+This document describes the requirements for JMS Corporation's development for the web-based implementation of Othello.
+
+\section{Project Drivers}
+
+\subsection{The Purpose of the Project}
+
+The purpose of the project is to revamp a python implementation of the game Othello and bring the game into a web-based implementation of itself. The web program will improve on any issues that currently exist with the python implementation and will add additional features to enhance the experience of the interface and the game itself.
+
+\subsection{The Stakeholders}
+
+\subsubsection{The Client}
+
+The client of the project is the McMaster Software Department whom would like to see the redevelopment of the python implementation of Othello and see a step by step process of the development cycle and whom would review the final product.
+
+\subsubsection{The Customers}
+
+The customers of the project will be the users that play the game on the web platform. Users will be surveyed and will provide feedback on which specific aspects of the game need improvement and which specific aspects work well.
+
+\subsubsection{Other Stakeholders}
+
+Other stakeholders would be the software team tasked with maintaining the game after its initial release by making occasional updates as well as making bug fixes to improve the game throughout time. This team will be able to take feedback from users to modify the game to fit their preferences.
+
+\subsection{Mandated Constraints}
+
+\subsection{Development Constraints}
+\begin{itemize}
+	\item The game will be built using HTML, CSS and JavaScript and the developers must have access to an IDE that supports these languages
+	\item Game must be based off of the python implementation of Othello
+	\item Functional requirements must not conflict with the in-game rules of Othello
+\end{itemize}
+
+\subsection{Environmental Constraints}
+\begin{itemize}
+	\item Software can only be run on web browsers that can run JavaScript
+	\item The game can only be accessed if the user has a device that is connected to the internet
+	\item Users can only access the game on devices that support web browsers
+	\item User interactions with the game require a device that allows mouse functionality or touch functionality
+\end{itemize}
+
+\subsection{Time Constraints}
+\begin{itemize}
+	\item A working prototype that includes some of the functional requirements is to be finished by October 16th 2018
+	\item The full game that includes all requirements will be built by November 27th
+\end{itemize}
+
+
+\subsection{Naming Conventions and Terminology}
+\begin{itemize}
+	\item JavaScript: Scripting program that allows for web implementation
+	\item HTML: Markup language for creating websites
+	\item CSS: Programming language that helps style the HTML elements
+	\item Program/Game/Software: Refers to Othello
+	\item User: Players of the game
+	\item Visual Studio: IDE used for programming
+	\item IDE: Interface for writing code
+	\item UI: User Interface
+	\item Model: Part of the code that deals with functionality
+	\item View: Part of the code that deals with the UI
+	\item Controller: Part of the code that deals with user interaction
+\end{itemize}
+
+\subsection{Symbolic Parameters}
+\begin{itemize}
+	\item {\color {blue} AI\_EXEC\_TIME: 1 second}
+	\item {\color {blue} RESP\_TIME: 0.5 second }
+	\item {\color {blue} ANIM\_TIME:   0.5 second}
+\end{itemize}
+
+\subsection{Relevant Facts and Assumptions}
+
+The previous implementation of the game contains approximately 1000 lines of code not including the different libraries that were used. Othello is a very popular strategy board game that has its very own World Championships. This factor alone could peak the interest of multiple people online thus attracting them to try out the web program. Some assumptions made about the project is that there will be underlying bugs in the game upon initial release, thus a team will be dedicated to the maintenance of the game after its release. Another assumption is that all current web browsers run JavaScript and are capable of running Othello as well. The final assumption made is that the majority of users will have the tendency to be impatient thus the program will have a fast execution time between moves
+
+\section{Functional Requirements}
+
+\subsection{The Scope of the Work and the Product}
+
+The scope of the work includes the deliverable of the core product being built, the Othello game. The scope of the product itself will depend on the given timeframe until Dec 6th, 2018. If time persists after the creation of the core features of the Othello game, advanced AI's will be built otherwise a simple AI will do for playing against. The product shall have an interactive UI to interface with along with animations during state changes of the game board. Milestones of the project include the creation of the virtual game board, interaction with the virtual game board, and lastly the creation of the AI opponent. The deliverables and their timeline will be the same as determined by the course instructor.
+
+\subsubsection{The Context of the Work}
+
+The context of the work is going to be a web application that is created using web technologies such as HTML/CSS/JavaScript and possibly other web libraries that will ease the developers in creating the product such as Reast and Pose, both of which help in creating the user interface.
+
+\subsubsection{Work Partitioning}
+
+\begin{table}[H]
+	\caption{\bf Work Partitioning}
+	\begin{tabularx}{\textwidth}{p{1.5cm}p{4cm}p{3cm}X}
+		\toprule {\bf Event Number} & {\bf Event Name}  & {\bf Input}    & {\bf Output}     \\
+		\midrule
+		1                           & State Creation    & Developer Code & Internet Browser \\
+		2                           & Graphics Creation & Developer Code & Internet Browser \\
+		3                           & User Interation   & Developer Code & Internet Browser \\
+		4                           & AI Creation       & Developer Code & Internet Browser \\
+		5                           & Final Edits       & Developer Code & Internet Browser \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\subsubsection{Individual Product Use Cases}
+
+\bf{Use Case \#1. }\\
+\bf{Related Requirements:} FR1-9\\
+\bf{Initiating Actor:} The player of the game.\\
+\bf{Actor's Goal:} Acheive the winning state.\\
+\bf{Participating Actors:} None.\\
+\bf{Preconditions:} The state of the game is not in the win/lose (ing) state.\\
+\bf{Postconditions:} The state of the game is in the win/lose (ing) state.\\
+\bf{Flow of events for main success:}\\
+$\rightarrow$ 1. The initiating actor places their game piece on the board.\\
+$\leftarrow$ 2. The system displays the new state.\\
+$\leftarrow$ 3. The system AI places their game piece on the board.\\
+$\leftarrow$ 4. The system displays the new state.\\
+$\rightarrow$ 5. This continues until a win/lose state occurs.\\
+\bf{Flow of events for Extensions:}\\
+$\rightarrow$ 1. The initiating actor invalidly places their game piece.\\
+$\leftarrow$ 2. The system displays an error state.
+
+\subsection{Functional Requirements}
+
+\begin{enumerate}
+	\item \bf{Requirement \#:} FR1.\\
+	      \bf{Description:} The game shall have a main screen for standby.\\
+	      \bf{Rationale:} To allow the user to start the game when they choose to.\\
+	      \bf{Fit Criterion:} Execute game, if no action is produced by the game without user input in a certain timeframe, the game is is standby mode.\\
+	      \bf{Originator:} Jinesh Patel. Oct 4th, 2018
+	\item \bf{Requirement \#:} FR2.\\
+	      \bf{Description:} The game shall have a screen for game win/loss.\\
+	      \bf{Rationale:} To allow the user to recieve feedback on their performance.\\
+	      \bf{Fit Criterion:} Execute game until a win or loss has occured to display the win/loss screen.\\
+	      \bf{Originator:} Jinesh Patel. Oct 4th, 2018
+	\item \bf{Requirement \#:} FR3.\\
+	      \bf{Description:} After user input from the win/loss screen, the game will return to the main screen with the game reset to it's initial state.\\
+	      \bf{Rationale:} To allow the user to exit the game or replay another round.\\
+	      \bf{Fit Criterion:} Wait for user input at the win/loss screen and see if the game resets to the main screen.\\
+	      \bf{Originator:} Jinesh Patel. Oct 4th, 2018
+	\item \bf{Requirement \#:} FR4.\\
+	      \bf{Description:} The game AI will perform only valid moves based on the game board state.\\
+	      \bf{Rationale:} If the AI does not perform only valid moves, it poses an anfair advantage.\\
+	      \bf{Fit Criterion:} Let the AI only choose from a certain set of valid places it can make the move.\\
+	      \bf{Originator:} Jinesh Patel. Oct 4th, 2018
+	\item \bf{Requirement \#:} FR5.\\
+	      \bf{Description:} The game, during play, shall show the current state of the board through a UI.\\
+	      \bf{Rationale:} The user needs some method of input and output to the state of the game.\\
+	      \bf{Fit Criterion:} Check to see that the web application renders the game board correctly.\\
+	      \bf{Originator:} Jinesh Patel. Oct 4th, 2018
+	\item \bf{Requirement \#:} FR6.\\
+	      \bf{Description:} The game shall allow the user to see the possible valid moves.\\
+	      \bf{Rationale:} The user needs some method to know where they can place their game piece.\\
+	      \bf{Fit Criterion:} Check to see that the web application renders the valid moves boxes correctly.\\
+	      \bf{Originator:} Jinesh Patel. Oct 4th, 2018
+	\item \bf{Requirement \#:} FR7.\\
+	      \bf{Description:} The game shall provide feedback to the user if they attempt to perform an invalid move.\\
+	      \bf{Rationale:} The user needs some method to know their attempt is invalid.\\
+	      \bf{Fit Criterion:} Perform an invalid move to see if any feedback is shown.\\
+	      \bf{Originator:} Jinesh Patel. Oct 4th, 2018
+	\item \bf{Requirement \#:} FR8.\\
+	      \bf{Description:} The game shall provide a means to save the current state of the game.\\
+	      \bf{Rationale:} The user should be able to stop playing and resume at another time.\\
+	      \bf{Fit Criterion:} Test to see if writing and reading the state to memory is consistent and the game is able to continue from that state.\\
+	      \bf{Originator:} Jinesh Patel. Oct 4th, 2018
+	\item \bf{Requirement \#:} FR9.\\
+	      \bf{Description:} The game shall provide a means to reset the state of the game.\\
+	      \bf{Rationale:} The user should be able to quit and start a new game.\\
+	      \bf{Fit Criterion:} Test to see if the game state has been reset.\\
+	      \bf{Originator:} Jinesh Patel. Oct 4th, 2018
+	\color{blue}
+	\item \bf{Requirement \#:} FR10.\\
+	      \bf{Description:} The game shall be able to return to previous states of the game.\\
+	      \bf{Rationale:} The user should be able to undo their moves.\\
+	      \bf{Fit Criterion:} Test to check if a previous version of the board is being used currently.\\
+	      \bf{Originator:} Sankar Renganathan. Nov 28th, 2018\\
+	\item \bf{Requirement \#:} FR11.\\
+	      \bf{Description:} The game shall be able to store state of game in local storage.\\
+	      \bf{Rationale:} The user should be able to save and load games.\\
+	      \bf{Fit Criterion:} Test to check if loaded game matches the exact state of the game when saved.\\
+	      \bf{Originator:} Sankar Renganathan. Nov 28th, 2018\\
+	\item \bf{Requirement \#:} FR12.\\
+	      \bf{Description:} The game shall be able to show all moves sequentially at the end of game.\\
+	      \bf{Rationale:} The user should be able to playback the events that unfolded throughout the game.\\
+	      \bf{Fit Criterion:} All states in the playback are equivalent to the history stack in that order.\\
+	      \bf{Originator:} Sankar Renganathan. Nov 28th, 2018\\
+\end{enumerate}
+
+\section{Non-functional Requirements}
+
+\subsection{Look and Feel Requirements}
+\begin{itemize}
+	\item  {\color {blue}\bf{ Requirement}} \# NF1:\\
+	      The JSM team logo must be visible at every instance of the game\\
+	      Reasoning: The team logo shall be represented to build a rapport with the user\\
+	      Criterion: Check if the Logo of the team is visilbe during all stages of the game\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018
+	\item {\color {blue}\bf{ Requirement}} \# NF2:\\
+	      The game graphics shall be generally aesthetically pleasing\\
+	      Reasoning: The user interface should be aesthetcally pleasing to the user to increase user enjoyment\\
+	      Criterion: Ask various people to rate if the user interface is aesthetically pleasing.\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018
+	\item  {\color {blue}\bf{ Requirement}} \# NF3\\
+	      The game pieces and the board shall constrast in color\\
+	      Reasoning: The user should be able to differentate their pieces from the users pieces\\
+	      Criterion: Ask various people to rate if the games pieces contrast in colour.\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018
+	\item {\color {blue}\bf{ Requirement}} \# NF{\color {blue}4:}\\
+	      The games pieces shall be seperated into two constrast colors\\
+	      Reasoning: The user should be able to see their pieces on the board. The game pieces should not blend in with the background that is the game board\\
+	      Criterion:Check with various people to see if they can differentiate they can see their game piece on the game board\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018
+
+\end{itemize}
+
+\subsection{Usability and Humanity Requirements}
+
+\begin{itemize}
+	\item  {\color {blue}\bf{ Requirement}} \#NF{\color {blue}5:}\\
+	      The user interface for the product shall be familiar to users and shall follow existing rules consistent\\
+	      with the open source python implementation of othello on github.\\
+	      Reasoning: The python implementation of othello follows user interface rules that are used in mainstream programs. A familiar user interface is much more easier to use.\\
+	      Criterion: Check with various people if they can immediately use the user interface for the game\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018
+
+	\item  {\color {blue}\bf{ Requirement}} \#NF{\color {blue}6:}\\
+	      Children of atleast age 6 should be able to use the user interface to play the game\\
+	      Rationale: The user interface should be incredibly easy to learn, such that even someone of low intellect should be able to use the interface.\\
+	      Criterion: Check with various children of age 6  and above to see if they can use the user interface of the game\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018
+\end{itemize}
+
+\subsection{Performance Requirements}
+
+\begin{itemize}
+
+	\item {\color {blue}\bf{ Requirement}} \#NF{\color {blue}7:}\\
+	      The time for the AI to make a move must be within $AI\_TIME$\\
+	      Reasoning: Latency in the AI will diminish the user's enjoyment of the game.\\
+	      Criterion: Time the AI to check that a move is made within $AI\_TIME$\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018
+
+	\item  {\color {blue}\bf{ Requirement}}\#NF{\color {blue}8:}\\
+	      When a user makes move, the move should be represented on the graphical othello board within $RESP\_TIME$\\
+	      Reasoning: Latency in recording the users actions will dimish the user's enjoyment of the game.\\
+	      Criterion: record the time the game needs to display the users move and compare with $RESP\_TIME$\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018
+
+	\item {\color {blue}\bf{ Requirement}} \#NF{\color {blue}9:}\\
+	      When a user makes move, the animation for the move shall not take more than  $ANIM\_TIME$\\
+	      Reasoning: Long game animations can also dimish the user's enjoyment of the game.\\
+	      Criterion:  record the time the game takes to display an animation compare with  $ANIM\_TIME$\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018
+
+\end{itemize}
+
+
+\subsection{Operational and Environmental Requirements}
+\begin{itemize}
+	\item  {\color {blue}\bf{ Requirement}} \#NF{\color {blue}10:}\\
+	      The project shall be used with a computer and a mouse or a mouse alternative.\\
+	      Reasoning: A user cannot play our game without the tools above\\
+	      Criterion:  Check if the game can played on a different device such as a PS4 for example.\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018
+
+	\item  {\color {blue}\bf{ Requirement}}\#NF{\color{blue}11:}\\
+	      The game must be able to interface with any HTML browser\\
+	      Reasoning: The game should be able to run on any browser in order to be accesible to users\\
+	      Criterion:  Check that the game runs on all valid HTML browsers\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018
+\end{itemize}
+
+\subsection{Maintainability and Support Requirements}
+\begin{itemize}
+	\item  {\color {blue}\bf{ Requirement}} {\color {blue} \#NF{\color {blue}12:}}\\
+	      The code for this project must be available to the public on github.\\
+	      Reasoning: Adding the project on  to github increases the ability to maintain and monitor the system.\\
+	      Criterion: Check that code for the project is availabe to the public on github\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018
+
+\end{itemize}
+
+
+\subsection{Security Requirements}
+\begin{itemize}
+	\item  {\color {blue}\bf{ Requirement}}{\color {blue} \# NF{\color {blue}13:}}\\
+	      The game shall not  access any of the user's folders or files {\color {blue} not related to the game save state.}\\
+	      Reasoning: In case of a security breach, the user should not be at risk\\
+	      Criterion: Look at game source code to see whether the game access the users folders or files {\color{blue} that do no correspond to the game save state file.}\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018
+
+\end{itemize}
+
+\subsection{Cultural Requirements}
+\begin{itemize}
+	\item  {\color {blue}\bf{ Requirement}} {\color {blue} \# NF{\color {blue}14:}}\\
+	      The game shall not contain any cultural imagery or text at all.\\
+	      Reasoning: Containing cultural imagery or text may offend some people by potentially appropriating or mocking their culture.\\
+	      Criterion:  Play the game and identify if any cultural icons or texts exist within the game.\\
+	      Originator: Mohammed Mirajkar, Oct 4th, 2018.
+\end{itemize}
+
+\subsection{Legal Requirements}
+\begin{itemize}
+	\item {\color {blue}\bf{ Requirement}}{\color {blue} \# NF{\color {blue}15:}}\\
+		The game must be licensed under the MIT Open License.\\
+	      Reasoning: The license is under the MIT Open License for the open source project that we based our implementation on\\
+	      Criterion:  Check that the game is licensed under the MIT Open License
+
+\end{itemize}
+\subsection{Health and Safety Requirements}
+There are no Health and Safety Requirements for this game.
+
+\section{Project Issues}
+
+\subsection{Open Issues}
+\begin{itemize}
+	\item The AI in the previous implementation takes about 2 seconds longer than the intended execution time
+	\item The animations for when the disks change colour also takes longer than the intended execution time
+	\item The user interface in the previous implementation doesn’t explicitly say which colour belongs to your team
+	\item The user interface in the previous implementation doesn’t have an explicit indicator for when it is the user’s turn
+	\item The previous implementation does not support 2 gameplay for human players
+\end{itemize}
+
+\subsection{Off-the-Shelf Solutions}
+
+Current off-the-shelf solutions include web browsers and servers to run the program and laptops, smartphones and tablets to run the web browsers.
+
+\subsection{New Problems}
+
+Some problems that arise due to the switch to a web platform include converting certain python functionalities for the specific function to work in JavaScript. Also, though a web implementation is more accessible to the general public, those without a web browser cannot play the game. There is also potential for a user to lose all their progress during a game depending on if the browser crashes.
+
+\subsection{Tasks}
+\begin{enumerate}
+	\item The first task is to create a JavaScript model based on the python implementation that contains functions required to perform actions and check results for Othello
+	\item The second task is to create a view that contains the board of the game as well as the pieces and some menu options
+	\item The third task is to create a controller that links the view and the model and allows for user interaction with the game
+	\item Testing will be done throughout the development of the project and will be used to test for different winning scenarios, move validity and output statements to ensure that the program will be able to meet all its functional requirements
+\end{enumerate}
+
+*Tasks will be evenly split among the team members and multiple members can contribute to the same task
+
+\subsection{Migration to the New Product}
+
+The previous python implementation will be heavily referenced when building the model for the web-based implementation of Othello. The AI and move validity as well as the winning scenarios will be inspired from the code in the python implementation by converting the syntax between Python and JavaScript. Once the model is finished, the view/UI will be created from scratch with little basis from the python implementation. The controller aspect will also be inspired by the python implementation with a conversion between the syntax while keeping the semantics the same with minor improvements.
+
+\subsection{Risks}
+
+As of now, there are no risks that can affect the outcome of the project.
+
+\subsection{Costs}
+
+The budget for this project is set at zero dollars. All programming will be done on free IDEs and application itself will be free to play as well.
+
+\subsection{User Documentation and Training}
+
+The website will provide a link to a user manual or a have a built in user manual to explain the rules of Othello to the user. Outside of this, not much documentation or training is required for the user as the rules of the game along with its interactions are set to be fairly simple.
+
+
+\subsection{Waiting Room}
+
+Current features that could potentially be added but are not required is an in-game timer that acts as a stopwatch to see how fast he/she can beat the AI in one game. Game music can also be potentially implemented into the game provided that there is no copyright infringement that could be claimed. Additional game modes such as rapid fire (each user will only have 10 seconds to make a move) can also be implemented to add a variety of gameplay methods for the user.
+
+
+\subsection{Ideas for Solutions}
+
+The goal is to use a model-view-controller scheme to implement Othello as a web-based implementation. May use certain libraries for specific animations. Visual Studio will be used to create and document the code for the project.
+
+\bibliographystyle{plainnat}
+
+\bibliography{SRS}
+
+\newpage
+
+\section{Appendix}
+
+The gantt chart has been updated for the week of October 1st.
+
+\subsection{Symbolic Parameters}
+
+N/A
+
+
+\end{document}

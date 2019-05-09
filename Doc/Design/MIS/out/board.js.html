@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: board.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: board.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * This is the Board class that stores the state of the othello game board.
+ */
+class Board {
+    /**
+     * Creates an instance of Board.
+     * @param {number} size The size of the board (must be even).
+     * @param {string[]} [state] The initial state to set the board.
+     * @throws {InvalidBoardSize} Thrown if the specified board size is not even.
+     * @throws {InvalidStateSize} Thrown if the state size is not the square of the board size.
+     * @throws {InvalidCellValue} Thrown is the state contains a cell where the value is neither of {'B', 'W', 'N'}
+     */
+    constructor(size, state) {
+        if (size % 2 !== 0)
+            throw "InvalidBoardSize";
+        if (state !== undefined &amp;&amp; size * size !== state.length)
+            throw "InvalidStateSize";
+        if (state !== undefined)
+            for (let i = 0; i &lt; state.length; i++)
+                if (!this.validValue(this.state[i]))
+                    throw "InvalidCellValue";
+
+        /**
+         * @property {number} size The size of the board.
+         */
+        this.size = size;
+        /**
+         * @property {string[]} state The state of the board.
+         */
+        this.state = state;
+
+        if (state === undefined) {
+            this.state = [...Array(64)].fill('N');
+
+            let tl = size / 2 - 1;
+            let br = size / 2;
+
+            this.state[this.index(tl, tl)] = 'W';
+            this.state[this.index(br, br)] = 'W';
+            this.state[this.index(tl, br)] = 'B';
+            this.state[this.index(br, tl)] = 'B';
+        }
+    }
+
+    /**
+     * Returns the size of the board.
+     */
+    getBoardSize() {
+        return this.size;
+    }
+
+    /**
+     * Returns true if the (x, y) cell is within the bounds of the board, otherwise false.
+     * @param {number} x The x location of the cell
+     * @param {number} y The y location of the cell
+     * @returns {boolean} &lt;code>true&lt;/code> if the (x, y) cell is within the bounds of the board, otherwise &lt;code>false&lt;/code>.
+     */
+    isCellInBoard(x, y) {
+        return x >= 0 &amp;&amp; y >= 0 &amp;&amp; x &lt; this.size &amp;&amp; y &lt; this.size;
+    }
+
+    /**
+     * Checks if a cell is set to a particular value.
+     * @param {number} x The x location of the cell
+     * @param {number} y The y location of the cell
+     * @param {string} v The value to test against
+     * @throws {InvalidCellLocation} Thrown if the (x, y) cell doesn't exist
+     * @throws {InvalidCellValue} Thrown if the specified value is neither of {'B', 'W', 'N'}
+     * @returns {boolean} &lt;code>true&lt;/code> if the (x, y) cell is set to the specified value, otherwise &lt;code>false&lt;/code>.
+     */
+    isCellValue(x, y, v) {
+        if (!this.isCellInBoard(x, y))
+            throw "InvalidCellLocation";
+        if (!this.validValue(v))
+            throw "InvalidCellValue";
+
+        return this.state[this.index(x, y)] === v;
+    }
+
+    /**
+     * Checks if the cell is a valid move for a specified player.
+     * @param {*} x The x location of the cell
+     * @param {*} y The y location of the cell
+     * @param {*} player The player to test for a valid move
+     * @throws {InvalidCellLocation} Thrown if the (x, y) cell doesn't exist
+     * @throws {InvalidPlayer} Thrown if the specfied player is neither of {'B', 'W'}
+     * @returns {boolean} &lt;code>true&lt;/code> if the move is valid, otherwise &lt;code>false&lt;/code>.
+     */
+    valid(x, y, player) {
+        if (!this.isCellInBoard(x, y))
+            throw "InvalidCellLocation";
+        if (!this.validPlayer(player))
+            throw "InvalidPlayer";
+
+        // The index of the cell.
+        let idx = index(x, y);
+
+        // If the cell is not empty, it is an invalid move.
+        if (this.state[idx] !== 'N')
+            return false;
+
+        // The opponent of the player.
+        let opponent = player === 'B' ? 'W' : 'B';
+
+        // The number of opponent cells in each direction.
+        let left = 0;
+        let right = 0;
+        let top = 0;
+        let bottom = 0;
+        let topleft = 0;
+        let topright = 0;
+        let bottomleft = 0;
+        let bottomright = 0;
+
+        // The x and y coordinates to keep track of the cell that is being inspected for each direction.
+        let xil = x - 1;
+        let xir = x + 1;
+        let yit = y - 1;
+        let yib = y + 1;
+        let xitl = x - 1;
+        let yitl = y - 1;
+        let xitr = x + 1;
+        let yitr = y - 1;
+        let xibl = x - 1;
+        let yibl = y + 1;
+        let xibr = x + 1;
+        let yibr = y + 1;
+
+        // Count the amount of opponent cells in each direction.
+        for (; this.isCellnBoard(xil, y) &amp;&amp; this.isCellValue(xil, y, opponent); xil--) left++;
+        for (; this.isCellnBoard(x, yit) &amp;&amp; this.isCellValue(x, yit, opponent); yit--) top++;
+        for (; this.isCellnBoard(xir, y) &amp;&amp; this.isCellValue(xir, y, opponent); xir++) right++;
+        for (; this.isCellnBoard(x, yib) &amp;&amp; this.isCellValue(x, yib, opponent); yib++) bottom++;
+        for (; this.isCellnBoard(xitr, yitr) &amp;&amp; this.isCellValue(xitr, yitr, opponent); xitr++ , yitr--) topright++;
+        for (; this.isCellnBoard(xitl, yitl) &amp;&amp; this.isCellValue(xitl, yitl, opponent); xitl-- , yitl--) topleft++;
+        for (; this.isCellnBoard(xibr, yibr) &amp;&amp; this.isCellValue(xibr, yibr, opponent); xibr++ , yibr++) bottomright++;
+        for (; this.isCellnBoard(xibl, yibl) &amp;&amp; this.isCellValue(xibl, yibl, opponent); xibl-- , yibl++) bottomleft++;
+
+        // Check if there is at least 1 opponent cell in the respective directions and ends with a player cell.
+        if (this.isCellInBoard(xil, y) &amp;&amp; this.isCellValue(xil, y, player) &amp;&amp; left > 0) return true;
+        if (this.isCellInBoard(xir, y) &amp;&amp; this.isCellValue(xir, y, player) &amp;&amp; right > 0) return true;
+        if (this.isCellInBoard(x, yit) &amp;&amp; this.isCellValue(x, yit, player) &amp;&amp; top > 0) return true;
+        if (this.isCellInBoard(x, yib) &amp;&amp; this.isCellValue(x, yib, player) &amp;&amp; bottom > 0) return true;
+        if (this.isCellInBoard(xitr, yitr) &amp;&amp; this.isCellValue(xitr, yitr, player) &amp;&amp; topright > 0) return true;
+        if (this.isCellInBoard(xitl, yitl) &amp;&amp; this.isCellValue(xitl, yitl, player) &amp;&amp; topleft > 0) return true;
+        if (this.isCellInBoard(xibl, yibl) &amp;&amp; this.isCellValue(xibl, yibl, player) &amp;&amp; bottomleft > 0) return true;
+        if (this.isCellInBoard(xibr, yibr) &amp;&amp; this.isCellValue(xibr, yibr, player) &amp;&amp; bottomright > 0) return true;
+
+        // Return false if line is not created.
+        return false;
+    }
+
+    /**
+     * Performs a move for a specified player
+     * @param {number} x The x location of a cell
+     * @param {number} y The y location of a cell
+     * @param {string} player The player making the move.
+     * @throws {InvalidCellLocation} Thrown if the specifed (x, y) cell doesn't exist.
+     * @throws {InvalidPlayer} Thrown if the specified player if neither of {'B', 'W'}.
+     * @throws {InvalidMove} Thrown if the move is invalid.
+     */
+    move(x, y, player) {
+        if (!this.isCellInBoard(x, y))
+            throw "InvalidCellLocation";
+        if (!this.validPlayer(v))
+            throw "InvalidPlayer";
+        if (!this.valid(x, y, player))
+            throw "InvalidMove";
+        
+        // The style of cell to set.
+        let opponent = player === 'B' ? 'W' : 'B';
+
+        this.setCell(x, y, player);
+
+        // The number of opponent cells in each direction.
+        let left = 0;
+        let right = 0;
+        let top = 0;
+        let bottom = 0;
+        let topleft = 0;
+        let topright = 0;
+        let bottomleft = 0;
+        let bottomright = 0;
+
+        // The x and y coordinates to keep track of the cell that is being inspected for each direction.
+        let xil = x - 1;
+        let xir = x + 1;
+        let yit = y - 1;
+        let yib = y + 1;
+        let xitl = x - 1;
+        let yitl = y - 1;
+        let xitr = x + 1;
+        let yitr = y - 1;
+        let xibl = x - 1;
+        let yibl = y + 1;
+        let xibr = x + 1;
+        let yibr = y + 1;
+
+        // Count the amount of opponent cells in each direction.
+        for (; this.isInBoard(xil, y) &amp;&amp; this.isCellValue(xil, y, opponent); xil--) left++;
+        for (; this.isInBoard(x, yit) &amp;&amp; this.isCellValue(x, yit, opponent); yit--) top++;
+        for (; this.isInBoard(xir, y) &amp;&amp; this.isCellValue(xir, y, opponent); xir++) right++;
+        for (; this.isInBoard(x, yib) &amp;&amp; this.isCellValue(x, yib, opponent); yib++) bottom++;
+        for (; this.isInBoard(xitr, yitr) &amp;&amp; this.isCellValue(xitr, yitr, opponent); xitr++ , yitr--) topright++;
+        for (; this.isInBoard(xitl, yitl) &amp;&amp; this.isCellValue(xitl, yitl, opponent); xitl-- , yitl--) topleft++;
+        for (; this.isInBoard(xibr, yibr) &amp;&amp; this.isCellValue(xibr, yibr, opponent); xibr++ , yibr++) bottomright++;
+        for (; this.isInBoard(xibl, yibl) &amp;&amp; this.isCellValue(xibl, yibl, opponent); xibl-- , yibl++) bottomleft++;
+
+        // Set the chips if the direction is valid to form a line.
+        if (this.isInBoard(xil, y) &amp;&amp; this.isCellValue(xil, y, player) &amp;&amp; left > 0) {
+            for (let xi = x - 1; this.isInBoard(xi, y) &amp;&amp; this.isCellValue(xi, y, opponent); xi--) {
+                this.setCell(xi, y, player, s);
+            }
+        }
+
+        if (this.isInBoard(xir, y) &amp;&amp; this.isCellValue(xir, y, player) &amp;&amp; right > 0) {
+            for (let xi = x + 1; this.isInBoard(xi, y) &amp;&amp; this.isCellValue(xi, y, opponent); xi++) {
+                this.setCell(xi, y, player, s);
+            }
+        }
+
+        if (this.isInBoard(x, yit) &amp;&amp; this.isCellValue(x, yit, player) &amp;&amp; top > 0) {
+            for (let yi = y - 1; this.isInBoard(x, yi) &amp;&amp; this.isCellValue(x, yi, opponent); yi--) {
+                this.setCell(x, yi, player, s);
+            }
+        }
+
+        if (this.isInBoard(x, yib) &amp;&amp; this.isCellValue(x, yib, player) &amp;&amp; bottom > 0) {
+            for (let yi = y + 1; this.isInBoard(x, yi) &amp;&amp; this.isCellValue(x, yi, opponent); yi++) {
+                this.setCell(x, yi, player, s);
+            }
+        }
+
+        if (this.isInBoard(xitr, yitr) &amp;&amp; this.isCellValue(xitr, yitr, player) &amp;&amp; topright > 0) {
+            for (let xi = x + 1, yi = y - 1; this.isInBoard(xi, yi) &amp;&amp; this.isCellValue(xi, yi, opponent); xi++ , yi--) {
+                this.setCell(xi, yi, player, s);
+            }
+        }
+
+        if (this.isInBoard(xitl, yitl) &amp;&amp; this.isCellValue(xitl, yitl, player) &amp;&amp; topleft > 0) {
+            for (let xi = x - 1, yi = y - 1; this.isInBoard(xi, yi) &amp;&amp; this.isCellValue(xi, yi, opponent); xi-- , yi--) {
+                this.setCell(xi, yi, player, s);
+            }
+        }
+
+        if (this.isInBoard(xibl, yibl) &amp;&amp; this.isCellValue(xibl, yibl, player) &amp;&amp; bottomleft > 0) {
+            for (let xi = x - 1, yi = y + 1; this.isInBoard(xi, yi) &amp;&amp; this.isCellValue(xi, yi, opponent); xi-- , yi++) {
+                this.setCell(xi, yi, player, s);
+            }
+        }
+
+        if (this.isInBoard(xibr, yibr) &amp;&amp; this.isCellValue(xibr, yibr, player) &amp;&amp; bottomright > 0) {
+            for (let xi = x + 1, yi = y + 1; this.isInBoard(xi, yi) &amp;&amp; this.isCellValue(xi, yi, opponent); xi++ , yi++) {
+                this.setCell(xi, yi, player, s);
+            }
+        }
+    }
+
+    /**
+     * Sets the value of a cell.
+     * @param {number} x The x location of the cell
+     * @param {number} y The y location of the cell
+     * @param {string} v The new value of the cell
+     * @throws {InvalidCellLocation} Thrown if the (x, y) cell doesn't exist.
+     * @throws {InvalidCellValue} Thrown if the specified value is neither of {'B', 'W', 'N'}
+     */
+    setCell(x, y, v) {
+        if (!this.isCellInBoard(x, y))
+            throw "InvalidCellLocation";
+        this.state[this.index(x, y)] = v;
+    }
+
+    /**
+     * Gets the value of a cell
+     * @param {number} x The x location of the cell
+     * @param {number} y The y location of the cell
+     * @throws {InvalidCellLocation} Thrown if the (x, y) cell doesn't exist.
+     * @return {string} The value which is either {'B', 'W', 'N'} of the specified cell.
+     */
+    getCell(x, y) {
+        if (!this.isCellInBoard(x, y))
+            throw "InvalidCellLocation";
+        
+        return this.state[this.index(x, y)];
+    }
+
+    /**
+     * Gets the count of the player's chip in the board.
+     * @param {string} player The player to get the count for.
+     * @throws {InvalidPlayer} Thrown if the specified player is neither of {'B', 'W'}
+     * @returns {number} The amount of chips the player has on the game board.
+     */
+    getCount(player) {
+        if (!this.validPlayer(player))
+            throw "InvalidPlayer";
+        
+        let sum = 0;
+
+        for (let i = 0; i &lt; this.state.length; i++)
+            if (this.state[i] === v)
+                sum++
+        
+        return sum;
+    }
+
+    index(x, y) {
+        return this.size * y + x;
+    }
+
+    validValue(v) {
+        return this.validPlayer(v) || v === 'N';
+    }
+
+    validPlayer(v) {
+        return v === 'B' || v === 'W';
+    }
+}
+
+module.exports = Board;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AI.html">AI</a></li><li><a href="Board.html">Board</a></li><li><a href="Game.html">Game</a></li><li><a href="History.html">History</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Nov 10 2018 15:14:29 GMT-0500 (Eastern Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
